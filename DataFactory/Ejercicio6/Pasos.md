@@ -1,9 +1,10 @@
-# Copiar Multiple tables con Lookup
+# TODO
+Copiar Multiple tables con Lookup
 
 Lookup: permite leer un dataset
 lee lista de objectos
 
-foreacah: executa actividades por cada objeto de la lista.
+foreach: executa actividades por cada objeto de la lista.
 
 # Setup:
 1. StorageAccount
