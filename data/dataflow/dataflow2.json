@@ -37,6 +37,9 @@
 				},
 				{
 					"name": "sort1"
+				},
+				{
+					"name": "join1"
 				}
 			],
 			"scriptLines": [
@@ -48,11 +51,16 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> inputMovies",
-				"inputMovies derive(year = toInteger(trim(right(title,6), '()'))) ~> extraerFecha",
+				"join1 derive(year = toInteger(trim(right(title,6), '()'))) ~> extraerFecha",
 				"extraerFecha aggregate(groupBy(year),",
 				"     NumeroPeliculas = count(),",
 				"     partitionBy('hash', 1)) ~> PeliculasPorANyo",
 				"PeliculasPorANyo sort(asc(year, true)) ~> sort1",
+				"inputMovies join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
 				"sort1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
