@@ -1,0 +1,9 @@
+{
+	"name": "miti-andres-lab",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "3efd9553-2a25-4dad-bf24-847f83fa9bf9",
+		"tenantId": "057e5cb0-9a93-4c3b-8a22-37efcee9a1a0"
+	}
+}

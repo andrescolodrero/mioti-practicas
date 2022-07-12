@@ -1,0 +1,25 @@
+{
+	"name": "trigger1",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Ejercicio1",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/ejercicio1/blobs/",
+			"blobPathEndsWith": "ejemplo.csv",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/46377ae7-8adc-4f39-8422-84e58da0fcdc/resourceGroups/mioti/providers/Microsoft.Storage/storageAccounts/andresdatalab",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}

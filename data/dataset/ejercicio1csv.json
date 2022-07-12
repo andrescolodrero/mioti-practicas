@@ -1,0 +1,30 @@
+{
+	"name": "ejercicio1csv",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "andreslabEjercicios",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "BLOB"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "ejemplo.csv",
+				"container": "ejercicio1"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

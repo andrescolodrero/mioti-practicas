@@ -1,0 +1,79 @@
+{
+	"name": "dataflow2",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "movies",
+						"type": "DatasetReference"
+					},
+					"name": "inputMovies"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "movies",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				},
+				{
+					"dataset": {
+						"referenceName": "movies",
+						"type": "DatasetReference"
+					},
+					"name": "sink2"
+				}
+			],
+			"transformations": [
+				{
+					"name": "extraerFecha"
+				},
+				{
+					"name": "PeliculasPorANyo"
+				},
+				{
+					"name": "sort1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          movieId as string,",
+				"          title as string,",
+				"          genres as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> inputMovies",
+				"inputMovies derive(year = toInteger(trim(right(title,6), '()'))) ~> extraerFecha",
+				"extraerFecha aggregate(groupBy(year),",
+				"     NumeroPeliculas = count(),",
+				"     partitionBy('hash', 1)) ~> PeliculasPorANyo",
+				"PeliculasPorANyo sort(asc(year, true)) ~> sort1",
+				"sort1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          movieId as string,",
+				"          title as string,",
+				"          genres as string",
+				"     ),",
+				"     partitionFileNames:['peliculasporanyo.csv'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1",
+				"extraerFecha sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          movieId as string,",
+				"          title as string,",
+				"          genres as string",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink2"
+			]
+		}
+	}
+}

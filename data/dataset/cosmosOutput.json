@@ -1,0 +1,16 @@
+{
+	"name": "cosmosOutput",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "CosmosDb2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "CosmosDbSqlApiCollection",
+		"schema": {},
+		"typeProperties": {
+			"collectionName": "vehiculos"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,16 @@
+{
+	"name": "commos_output_ejemplocsv",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "CosmosDb1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "CosmosDbSqlApiCollection",
+		"schema": {},
+		"typeProperties": {
+			"collectionName": "mydocs"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
